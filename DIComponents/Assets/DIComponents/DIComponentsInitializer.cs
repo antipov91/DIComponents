@@ -6,9 +6,9 @@ namespace DIComponents
     public class DIComponentsInitializer
     {
         #if UNITY_EDITOR
-        private static IComponentsInjector componentsInjector = new DebugComponentsInjector();
+        private static IComponentsInjector componentsInjector = new DebugComponentsInjector(new UnityGameService());
         #else
-        private static IComponentsInjector componentsInjector = new ComponentsInjector();        
+        private static IComponentsInjector componentsInjector = new ComponentsInjector(new UnityGameService());        
         #endif
 
         public static void Inject(GameObject go)
@@ -23,6 +23,8 @@ namespace DIComponents
                     componentsInjector.InjectComponent(component, field);
                     componentsInjector.InjectComponentFromChild(component, field);
                     componentsInjector.InjectComponentFromObject(component, field);
+                    componentsInjector.InjectAsSingle(component, field);
+                    componentsInjector.InjectAsTransient(component, field);
                 }
             }
         }
