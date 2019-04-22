@@ -27,6 +27,16 @@ namespace DIComponents
                     componentsInjector.InjectAsTransient(component, field);
                 }
             }
+
+        }
+
+        public static void RecursiveInject(GameObject go)
+        {
+            var childrens = go.GetComponentsInChildren<Transform>();
+            foreach (var child in childrens)
+                if (child != null && child.gameObject != null && child.gameObject != go)
+                    RecursiveInject(child.gameObject);
+            Inject(go);
         }
     }
 }
