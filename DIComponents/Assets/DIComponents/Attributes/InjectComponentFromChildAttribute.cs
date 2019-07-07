@@ -4,11 +4,11 @@ namespace DIComponents
 {
     public class InjectComponentFromChildAttribute : Attribute
     {
-        public string childName;
+        public string ChildName { get; private set; }
 
         public InjectComponentFromChildAttribute(string childName)
         {
-            this.childName = childName;
+            ChildName = childName;
         }
     }
 }

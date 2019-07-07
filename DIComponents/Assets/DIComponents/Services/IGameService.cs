@@ -1,12 +1,11 @@
 ﻿using System;
-using UnityEngine;
 
-namespace DIComponents
+namespace DIComponents.Core
 {
     public interface IGameService
     {
-        Component GetComponent(Component component, Type type);
-        Component GetComponentInChildren(Component component, string name, Type type);
-        Component Find(string name, Type type);
+        object GetComponent(object obj, Type type);
+        object GetComponentInChildren(object obj, string name, Type type);
+        object Find(string name, Type type);
     }
 }

@@ -2,10 +2,10 @@
 
 public class InjectComponentFromObjectAttribute : Attribute
 {
-    public string objectName;
+    public string ObjectName { get; private set; }
 
     public InjectComponentFromObjectAttribute(string objectName)
     {
-        this.objectName = objectName;
+        ObjectName = objectName;
     }
 }

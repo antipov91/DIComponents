@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using DIComponents;
 
-public class MonoDIComponentsInitializer : MonoBehaviour
+namespace DIComponents
 {
-    private void OnEnable()
+    public class MonoDIComponentsInitializer : MonoBehaviour
     {
-        var allObjects = FindObjectsOfType<GameObject>();
-        foreach (var go in allObjects)
-            DIComponentsInitializer.Inject(go);
+        private void OnEnable()
+        {
+            var allObjects = FindObjectsOfType<GameObject>();
+            foreach (var go in allObjects)
+                DIComponentsInitializer.Inject(go);
+        }
     }
 }

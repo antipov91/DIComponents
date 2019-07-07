@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace DIComponents
+namespace DIComponents.Core
 {
     public class UnityGameService : IGameService
     {
-        public Component Find(string name, Type type)
+        public object Find(string name, Type type)
         {
             var go = GameObject.Find(name);
             if (ReferenceEquals(go, null))
@@ -13,13 +13,15 @@ namespace DIComponents
             return go.GetComponent(type);
         }
 
-        public Component GetComponent(Component component, Type type)
+        public object GetComponent(object obj, Type type)
         {
+            var component = obj as Component;
             return component.GetComponent(type);
         }
 
-        public Component GetComponentInChildren(Component component, string name, Type type)
+        public object GetComponentInChildren(object obj, string name, Type type)
         {
+            var component = obj as Component;
             var go = component.transform.Find(name);
             if (ReferenceEquals(go, null))
                 return null;
