@@ -19,10 +19,44 @@ Currently, the framework supports the following attributes:
 - ```[InjectComponent]``` - Checks and caches the component added to game object.
 - ```[InjectComponentFromChild("Child name")]``` - Checks and caches the component added to the child object with the name "Child name" on the game object.
 - ```[InjectComponentFromObject("Object name")]``` - Checks and caches a component added to another game object.
-- ```[InjectAsSingle]``` - Сreates an instance of the class as a singleton.
+- ```[InjectAsSingle]``` - Сreates instance of the class as a singleton.
 - ```[InjectAsTransient]``` - Сreates instances of the class.
+- ```[InjectFactory]``` - Creates instance of the factory as a singleton 
 
 3. When you want to initialize the prefab, you need to use DIService
 ```C#
 DIService.InstantiateAndInject(prefab);
+```
+
+# Usage factories
+1. Сreate a class custom factory that inherits from the class factory. As generic types, specify the types of parameters that will be inserted as parameters in the constructor. Factories are used to create instances of classes (not inherited from MonoBehaviour), attributes are also injected when creating
+
+```C#
+public class Enemy
+{
+    public Enemy(int id, Vector3 pos)
+    {
+        ...
+    }
+}
+
+public class EnemyFactory : Factory<int, Vector3, EnemyClass>
+{
+    public EnemyFactory(IObjectActivator objectActivator) : base(objectActivator) { }
+}
+```
+
+2. Add attribute where factory will be used.
+
+```C#
+public class ExampleClass : MonoBehaviour
+{
+  [InjectFactory] private EnemyFactory factory;
+  
+  public void Create()
+  {
+      var enemy = factory.Create(1, new Vector3(0.1f, 0.2f, 0f));
+  }
+  ...
+}
 ```
