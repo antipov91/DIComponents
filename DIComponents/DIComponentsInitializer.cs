@@ -9,7 +9,7 @@ namespace DIComponents
         #if UNITY_EDITOR
         private static IInjector componentsInjector = new DebugInjector(new UnityGameService());
         #else
-        private static IComponentsInjector componentsInjector = new ComponentsInjector(new UnityGameService());        
+        private static IInjector componentsInjector = new Injector(new UnityGameService());        
         #endif
 
         public static void Inject(object obj)

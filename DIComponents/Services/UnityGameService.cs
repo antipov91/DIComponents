@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DIComponents.Core
@@ -24,8 +25,26 @@ namespace DIComponents.Core
             var component = obj as Component;
             var go = component.transform.Find(name);
             if (ReferenceEquals(go, null))
-                return null;
+            {
+                var childrens = GetChildrens(component.transform);
+                var child = childrens.Find(x => x.name == name);
+                if (ReferenceEquals(child, null))
+                    return null;
+
+                return child.GetComponent(type);
+            }
             return go.GetComponent(type);
+        }
+
+        public List<GameObject> GetChildrens(Transform transform)
+        {
+            var childrens = new List<GameObject>();
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                childrens.Add(transform.GetChild(i).gameObject);
+                childrens.AddRange(GetChildrens(transform.GetChild(i).transform));
+            }
+            return childrens;
         }
     }
 }
