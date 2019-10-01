@@ -1,6 +1,6 @@
 # DIComponents
 
-DIComponents is a dependency injection framework created for unit 3d. It is used to check and inject component dependencies in unity scripts and does not contain containers for dependency injection. It is simply a substitute for the functionality of unity 3D, such as the GetComponent, transform.find, etc.
+DIComponents is a dependency injection framework created for unity 3d. It is used to check and inject component dependencies in unity scripts and does not contain containers for dependency injection. It is simply a substitute for the functionality of unity 3D, such as the GetComponent, transform.find, etc.
 
 # Usage
 1. Add an empty game object to the scene and add the MonoDIComponentsInitializer script. This script is used to inject dependencies for objects on the scene.
