@@ -5,7 +5,7 @@ DIComponents is a dependency injection framework created for unity 3d. It is use
 # Usage
 1. Add an empty game object to the scene and add the MonoDIComponentsInitializer script. This script is used to inject dependencies for objects on the scene.
 
-2. In unity scripts inherited from monoBenavior, add attributes to the fields for caching components.
+2. In unity scripts inherited from monoBehavior, add attributes to the fields for caching components.
 ```C#
 public class ExampleClass : MonoBehaviour
 {
